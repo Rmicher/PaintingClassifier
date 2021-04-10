@@ -7,7 +7,7 @@ import os
 from PIL import Image
 import PIL
 
-df_full=pd.read_csv(f'df_full.csv', index_col=0)
+#df_full=pd.read_csv(f'df_full.csv', index_col=0)
 #print (df_full)
 
 def get_shape(path):
@@ -23,7 +23,7 @@ def get_shape(path):
         shape_list=list(shape)
         shape_list.append(0)
         shape=tuple(shape_list)
-    print (shape)
+    #print (shape)
     return shape
 
 #getting size for each image
@@ -37,9 +37,9 @@ df_full.to_csv('df_full_with_size.csv')'''
 
 def resized_images_max_streched_1 (path, size):
     image = Image.open(f'data\\{path}')
-    print(image.size)
+    #print(image.size)
     img_resized = image.resize(size)
-    print(img_resized.size)
+    #print(img_resized.size)
 
     #plt.imshow(image)
     #plt.show()
@@ -62,15 +62,15 @@ def resized_images_max_padded_2 (path, size):
     #plt.show()
     return result
 
-size=(750, 600)
-path='albrecht-durer\\artworks\\bacchanal-with-silenus.jpg'
+#size=(750, 600)
+#path='albrecht-durer\\artworks\\bacchanal-with-silenus.jpg'
 #resized_images_max_streched_1 (path,size)
-resized_images_max_padded_2 (path,size)
+#resized_images_max_padded_2 (path,size)
 
 
 def image_to_matrix(path,size):
-    print (path)
-    images_matrix=0
+    #print (path)
+    #images_matrix=0
     try:
         #image_reshaped = resized_images_max_streched_1(path, size)
         image_reshaped=resized_images_max_padded_2 (path,size)
@@ -78,9 +78,11 @@ def image_to_matrix(path,size):
         #plt.show()
         #print (image_reshaped.size)
         images_array = np.asarray(image_reshaped)
-        image_reshaped2 = images_array.reshape(images_array.shape[0] * images_array.shape[1], 1)
-        images_matrix=np.matrix(image_reshaped2)
+        #print (images_array)
+        #image_reshaped2 = images_array.reshape(images_array.shape[0] * images_array.shape[1], 1)
+        images_matrix=images_array
     except:
+        images_matrix=0
         pass
     #print (images_matrix)
     return images_matrix
